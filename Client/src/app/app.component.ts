@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from './_models/user';
 import { AccountService } from './_services/account.service';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -12,7 +13,7 @@ import { AccountService } from './_services/account.service';
 export class AppComponent implements OnInit{
   title = 'The Demo App';
   users:any;
-  constructor(private accountService:AccountService){
+  constructor(private accountService:AccountService,private http:HttpClient){
   }
   ngOnInit() {
    //this.getUsers();
@@ -24,11 +25,13 @@ export class AppComponent implements OnInit{
     this.accountService.setCurrentUser(user);
   }
 
-//   getUsers(){
-//     this.http.get('https://localhost:5001/api/users').subscribe(response=>{
-//       this.users=response;
-//     },error=>{
-//       console.log(error.message);
-//     })
-//   }
+  // getUsers(){
+  //   this.http.get('https://localhost:5001/api/users').subscribe(response=>{
+  //     this.users=response;
+  //     console.log('Users on app components');
+  //     console.log(this.users);
+  //   },error=>{
+  //     console.log(error.message);
+  //   })
+  // }
  }

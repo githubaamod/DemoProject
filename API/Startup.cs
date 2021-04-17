@@ -59,10 +59,11 @@ namespace API
                 // app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "API v1"));
             }
 
-            app.UseHttpsRedirection();
+            
 
             app.UseRouting();
             app.UseCors(x =>x.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:4200"));
+            app.UseHttpsRedirection();  //this i changeed,it should above UseCors
             app.UseAuthentication();
             app.UseAuthorization();
 

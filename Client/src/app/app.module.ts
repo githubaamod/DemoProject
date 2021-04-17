@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -20,6 +20,14 @@ import { NotFoundComponent } from './errors/not-found/not-found.component';
 import { ServerErrorComponent } from './errors/server-error/server-error.component';
 import { FooterComponent } from './footer/footer.component';
 import { SerachMainComponent } from './serach-main/serach-main.component';
+import { MemberCardComponent } from './members/member-card/member-card.component';
+import { JwtInterceptor } from './_interceptors/jwt.interceptor';
+import { MemeberEditComponent } from './members/memeber-edit/memeber-edit.component';
+import { LoadingInterceptor } from './_interceptors/loading.interceptor';
+import { NgxGalleryModule } from '@kolkov/ngx-gallery';
+import { NgxSpinnerModule } from 'ngx-spinner';
+
+
 
 
 
@@ -38,6 +46,8 @@ import { SerachMainComponent } from './serach-main/serach-main.component';
     ServerErrorComponent,
     FooterComponent,
     SerachMainComponent,
+    MemberCardComponent,
+    MemeberEditComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,11 +55,15 @@ import { SerachMainComponent } from './serach-main/serach-main.component';
     HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
-    SharedModule
-   
+    SharedModule,
+    NgxGalleryModule,
+    NgxSpinnerModule
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
-    {provide:HTTP_INTERCEPTORS,useClass:ErrorInterceptor,multi:true}
+    {provide:HTTP_INTERCEPTORS,useClass:ErrorInterceptor,multi:true},
+    {provide:HTTP_INTERCEPTORS,useClass:JwtInterceptor,multi:true},
+    {provide:HTTP_INTERCEPTORS,useClass:LoadingInterceptor,multi:true}
   ],
   bootstrap: [AppComponent]
 })
